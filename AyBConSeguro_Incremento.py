@@ -48,7 +48,7 @@ class HiloTipoA(threading.Thread):
                 #Fin sección crítica para esta iteración
                 lock.release()
                 #sleep agregado para ralentizar proceso y ver paso a paso
-                #time.sleep(random.randint(0,1))
+                time.sleep(random.randint(0,1))
             else:
                 logging.info("El "+str(nombre)+" ha terminado. El valor final de x es "+str(x)+".")
                 #Fin sección crítica para esta iteración
@@ -66,14 +66,14 @@ class HiloTipoB(threading.Thread):
             #Inicio sección crítica
             lock.acquire()
             global x
+            #Lectura de valor x para imprimir
+            logging.info("El valor de x es "+str(x))
             #Lectura de valor x para validar la condición
             if x<1000000:
-                logging.info("El valor de x es "+str(x))
                 #Fin sección crítica para esta iteración
                 lock.release()
                 time.sleep(2)
             else:
-                logging.info("El valor de x es "+str(x))
                 #Fin sección crítica para esta iteración
                 lock.release()
                 break
